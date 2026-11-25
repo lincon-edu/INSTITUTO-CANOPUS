@@ -60,7 +60,7 @@ Notícias publicadas no painel aparecem no destaque e no blog; rascunhos não s�
 
 ## GitHub Pages
 
-O workflow `.github/workflows/pages.yml` compila e publica a pasta `dist` em push para `main` ou por execução manual. O site publicado no GitHub Pages fica acessível publicamente. Configure no repositório, em **Settings → Secrets and variables → Actions**, os secrets:
+O workflow `.github/workflows/pages.yml` compila e publica a pasta `dist` em push para `main` ou por execução manual. Na primeira execução, ele tenta habilitar o GitHub Pages usando GitHub Actions; se a política do repositório impedir, selecione **Settings → Pages → Build and deployment → GitHub Actions**. O site publicado no GitHub Pages fica acessível publicamente. Configure no repositório, em **Settings → Secrets and variables → Actions**, os secrets:
 
 - `VITE_SUPABASE_URL`
 - `VITE_SUPABASE_ANON_KEY`
