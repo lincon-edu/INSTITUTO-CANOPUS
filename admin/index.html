@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Painel administrativo | Instituto Canopus</title>
+  <link rel="icon" href="../assets/img/logos/simbolo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Poppins:wght@200;300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="admin-page">
+  <header class="admin-topbar">
+    <a href="../index.html" aria-label="Voltar ao site"><img src="../assets/img/logos/instituto-canopus.png" alt="Instituto Canopus"></a>
+    <span>Painel administrativo</span>
+    <button class="btn btn-outline" type="button" id="admin-logout" hidden>Sair</button>
+  </header>
+  <main class="admin-main">
+    <section class="admin-login" id="admin-login" hidden>
+      <h1>Acessar o painel</h1>
+      <p>Entre com sua conta administrativa do Instituto Canopus.</p>
+      <form id="login-form">
+        <label>E-mail<input name="email" type="email" autocomplete="username" required></label>
+        <label>Senha<input name="password" type="password" autocomplete="current-password" required></label>
+        <button class="btn" type="submit">Entrar</button>
+        <p class="admin-message" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+    <section id="admin-loading" class="admin-message" role="status">Conectando ao painel...</section>
+    <section id="admin-denied" class="admin-login" hidden>
+      <h1>Acesso não autorizado</h1>
+      <p>Esta conta não possui permissão de administração.</p>
+      <button class="btn btn-outline" type="button" data-sign-out>Sair da conta</button>
+    </section>
+    <div id="admin-app" class="admin-layout" hidden>
+      <nav class="admin-sidebar" aria-label="Menu administrativo">
+        <h2>Gerenciar</h2>
+        <button type="button" data-view="dashboard" class="is-current">Dashboard</button>
+        <button type="button" data-view="home">Página inicial</button>
+        <button type="button" data-view="about">Quem somos</button>
+        <button type="button" data-view="news">Notícias</button>
+        <button type="button" data-view="team">Equipe</button>
+        <button type="button" data-view="projects">Projetos</button>
+        <button type="button" data-view="events">Eventos por cidade</button>
+        <button type="button" data-view="registrations">Inscrições</button>
+        <button type="button" data-view="gallery">Galeria de imagens</button>
+      </nav>
+      <div class="admin-content">
+        <section class="admin-view" data-panel="dashboard">
+          <h1>Dashboard</h1>
+          <p>Bem-vindo ao gerenciamento de conteúdo do Instituto Canopus.</p>
+          <div class="admin-stats">
+            <article><span id="count-news">—</span><p>Notícias publicadas</p></article>
+            <article><span id="count-team">—</span><p>Integrantes ativos</p></article>
+            <article><span id="count-projects">—</span><p>Projetos cadastrados</p></article>
+          </div>
+          <div class="admin-actions">
+            <button type="button" class="btn" data-go="news">Cadastrar notícia</button>
+            <button type="button" class="btn btn-outline" data-go="home">Editar página inicial</button>
+            <button type="button" class="btn btn-outline" data-go="about">Editar Quem somos</button>
+          </div>
+        </section>
+        <section class="admin-view" data-panel="home" hidden>
+          <h1>Página inicial</h1>
+          <p>Adicione quantas imagens quiser: cada slide pode ter seu próprio título e subtítulo, ou ficar apenas com a imagem. O banner troca automaticamente a cada 6 segundos e também permite navegação pelas setas e marcadores. A prévia atualiza enquanto você edita; as mudanças aparecem no site depois de salvar.</p>
+          <form id="home-form" class="admin-form">
+            <label>Texto do botão<input name="button_text"></label>
+            <label>Link do botão<input name="button_url" type="text"></label>
+            <fieldset class="admin-slide-editor">
+              <legend>Imagens do slideshow</legend>
+              <p>Inclua imagens por URL ou envie arquivos. Reordene com os botões; título e subtítulo são opcionais e exclusivos de cada slide.</p>
+              <div id="home-slides-list" class="admin-slide-list"></div>
+              <button class="btn btn-outline" type="button" id="home-add-slide">Adicionar imagem ao slideshow</button>
+            </fieldset>
+            <label>Título da seção de notícias<input name="news_title"></label>
+            <label>Introdução das notícias<textarea name="news_intro" rows="3"></textarea></label>
+            <label>Título da seção de projetos<input name="projects_title"></label>
+            <label>Texto institucional<textarea name="intro" rows="5"></textarea></label>
+            <label>Título da seção de contato<input name="contact_title"></label>
+            <label>Texto de contato<textarea name="contact_text" rows="3"></textarea></label>
+            <label>Endereço<input name="contact_address" value="Rua Paraguaçu, 31 - Pico do Amor"></label>
+            <label>CEP<input name="contact_postcode" value="78065-085"></label>
+            <label>Cidade<input name="contact_city" value="Cuiabá"></label>
+            <label>Estado<input name="contact_state" value="MT"></label>
+            <label>Telefone principal<input name="contact_phone_primary" type="tel" value="(65) 99967-6394"></label>
+            <label>Telefone secundário<input name="contact_phone_secondary" type="tel" value="(65) 99984-8311"></label>
+            <label>E-mail de contato<input name="contact_email" type="email"></label>
+            <label>Link do Google Maps<input name="contact_map_url" type="url" value="https://maps.app.goo.gl/KjGQ9RGixdeS3Ktf7"></label>
+            <button class="btn" type="submit">Salvar página inicial</button>
+            <p class="admin-message" role="status"></p>
+          </form>
+          <aside class="admin-preview-panel" aria-label="Prévia da página inicial">
+            <h2>Prévia — Página inicial</h2>
+            <p class="admin-preview-location">Início › Banner, Notícias, Projetos e Contato</p>
+            <div class="preview-home-hero">
+            <img data-live-preview="home.hero_image" alt="Prévia da imagem do banner">
+              <div><h3 data-live-preview="home.hero_title">Título do banner</h3><p data-live-preview="home.hero_subtitle">Subtítulo do banner</p><span data-live-preview="home.button_text"></span></div>
+            </div>
+            <p data-live-preview="home.slides_count">1 imagem no slideshow</p>
+            <div class="admin-slide-thumbnails" id="home-slides-preview" aria-label="Prévia das imagens do slideshow"></div>
+            <h3 data-live-preview="home.news_title">Notícias</h3>
+            <p data-live-preview="home.news_intro"></p>
+            <h3 data-live-preview="home.projects_title">Nossos Projetos</h3>
+            <p data-live-preview="home.intro"></p>
+            <h3 data-live-preview="home.contact_title">Contato</h3>
+            <p data-live-preview="home.contact_text"></p>
+            <p data-live-preview="home.contact_address">Rua Paraguaçu, 31 - Pico do Amor</p>
+            <p><span data-live-preview="home.contact_city">Cuiabá</span> - <span data-live-preview="home.contact_state">MT</span> · CEP <span data-live-preview="home.contact_postcode">78065-085</span></p>
+            <p><span data-live-preview="home.contact_phone_primary">(65) 99967-6394</span> · <span data-live-preview="home.contact_phone_secondary">(65) 99984-8311</span></p>
+            <p class="admin-preview-note">Prévia local; salve para publicar as alterações.</p>
+          </aside>
+        </section>
+        <section class="admin-view" data-panel="about" hidden>
+          <h1>Quem somos</h1>
+          <p>Estes campos correspondem às seções da página pública Quem Somos. Confira o resultado antes de salvar.</p>
+          <form id="about-form" class="admin-form">
+            <label>Título da história<input name="history_title"></label>
+            <label>História — parágrafo 1<textarea name="history_1" rows="5"></textarea></label>
+            <label>História — parágrafo 2<textarea name="history_2" rows="5"></textarea></label>
+            <label>História — parágrafo 3<textarea name="history_3" rows="5"></textarea></label>
+            <label>História — parágrafo 4<textarea name="history_4" rows="5"></textarea></label>
+            <label>História — parágrafo 5<textarea name="history_5" rows="5"></textarea></label>
+            <label>Título da missão<input name="mission_title"></label>
+            <label>Missão<textarea name="mission" rows="4"></textarea></label>
+            <label>Título da visão<input name="vision_title"></label>
+            <label>Visão<textarea name="vision" rows="4"></textarea></label>
+            <label>Título dos valores<input name="values_title"></label>
+            <label>Valores<textarea name="values" rows="4"></textarea></label>
+            <label>Imagem do banner<div class="upload-row"><input name="banner_image" type="text"><input type="file" accept="image/jpeg,image/png,image/webp,image/gif"></div></label>
+            <img class="admin-preview" data-preview="banner_image" alt="Prévia do banner" hidden>
+            <button class="btn" type="submit">Salvar Quem somos</button>
+            <p class="admin-message" role="status"></p>
+          </form>
+          <aside class="admin-preview-panel" aria-label="Prévia da página Quem somos">
+            <h2>Prévia — Quem somos</h2>
+            <p class="admin-preview-location">Quem Somos › Banner, História, Missão, Visão e Valores</p>
+            <img class="preview-about-image" data-live-preview="about.banner_image" alt="Prévia do banner de Quem somos">
+            <h3 data-live-preview="about.history_title">História do Instituto Canopus</h3>
+            <p data-live-preview="about.history_1"></p>
+            <p data-live-preview="about.history_2"></p>
+            <p data-live-preview="about.history_3"></p>
+            <p data-live-preview="about.history_4"></p>
+            <p data-live-preview="about.history_5"></p>
+            <h3 data-live-preview="about.mission_title">Missão</h3>
+            <p data-live-preview="about.mission"></p>
+            <h3 data-live-preview="about.vision_title">Visão</h3>
+            <p data-live-preview="about.vision"></p>
+            <h3 data-live-preview="about.values_title">Princípios, Crenças e Valores</h3>
+            <div data-live-preview="about.values"></div>
+            <p class="admin-preview-note">Prévia local; salve para publicar as alterações.</p>
+          </aside>
+        </section>
+        <section class="admin-view" data-panel="news" hidden>
+          <h1>Notícias</h1>
+          <p>Crie, edite, publique ou remova notícias. O conteúdo aparece no blog somente quando o status é “Publicado”.</p>
+          <div class="admin-split">
+            <form id="news-form" class="admin-form">
+              <input name="id" type="hidden">
+              <label>Título<input name="title" required maxlength="180"></label>
+              <label>Slug<input name="slug" required></label>
+              <label>Resumo<textarea name="excerpt" rows="3" required></textarea></label>
+              <label>Conteúdo
+                <span class="editor-toolbar">
+                  <button type="button" data-command="bold"><strong>B</strong></button>
+                  <button type="button" data-command="italic"><em>I</em></button>
+                  <button type="button" data-command="formatBlock" data-value="h2">Título</button>
+                  <button type="button" data-command="formatBlock" data-value="h3">Subtítulo</button>
+                  <button type="button" data-command="insertUnorderedList">Lista</button>
+                  <button type="button" data-command="createLink">Link</button>
+                  <button type="button" data-command="insertImage">Imagem</button>
+                </span>
+                <div id="news-body" class="rich-editor" contenteditable="true" role="textbox" aria-multiline="true"></div>
+              </label>
+              <p class="admin-preview-note">Imagens inseridas aqui ficam no corpo do texto. Para exibir fotos em grade abaixo do texto, use a Galeria de fotos.</p>
+              <label>Categoria<select name="category" required><option value="">Selecione uma categoria</option></select></label>
+              <label>Data de publicação<input name="published_at" type="date"></label>
+              <label>Imagem de capa<div class="upload-row"><input name="cover_url" type="text"><input type="file" accept="image/jpeg,image/png,image/webp,image/gif"></div></label>
+              <img class="admin-preview" data-preview="cover_url" alt="Prévia da capa" hidden>
+              <fieldset class="admin-news-gallery">
+                <legend>Galeria de fotos</legend>
+                <p>Adicione várias fotos para aparecerem em uma grade abaixo do texto da notícia.</p>
+                <label>Enviar fotos<input id="news-gallery-files" type="file" accept="image/jpeg,image/png,image/webp,image/gif" multiple></label>
+                <div class="news-gallery-url-row">
+                  <label for="news-gallery-url">Adicionar imagem por URL</label>
+                  <input id="news-gallery-url" type="text" placeholder="https://... ou assets/...">
+                  <button class="btn btn-outline" type="button" id="news-gallery-add-url">Adicionar URL</button>
+                </div>
+                <div id="news-gallery-items" class="admin-news-gallery-grid" aria-live="polite"></div>
+              </fieldset>
+              <label>Status<select name="status"><option value="draft">Rascunho</option><option value="published">Publicado</option></select></label>
+              <div class="admin-actions"><button class="btn" type="submit">Salvar notícia</button><button class="btn btn-outline" type="button" id="news-new">Nova notícia</button></div>
+              <p class="admin-message" role="status"></p>
+            </form>
+            <div class="admin-records"><h2>Conteúdos cadastrados</h2><div id="news-items" class="admin-items"></div></div>
+            <aside class="admin-preview-panel" aria-label="Prévia da notícia">
+              <h2>Prévia — Blog / artigo</h2>
+              <p class="admin-preview-location">Blog › cartão da notícia e página individual</p>
+              <article class="preview-news">
+                <img data-live-preview="news.cover_url" alt="Prévia da capa da notícia">
+                <span data-live-preview="news.status">Rascunho</span>
+                <h3 data-live-preview="news.title">Título da notícia</h3>
+                <p data-live-preview="news.excerpt">O resumo será mostrado no cartão do blog.</p>
+                <div data-live-preview="news.body" class="preview-news-body"></div>
+                <div data-live-preview="news.gallery" class="admin-news-gallery-grid"></div>
+              </article>
+              <p class="admin-preview-note">Prévia local; salve para publicar as alterações.</p>
+            </aside>
+          </div>
+        </section>
+        <section class="admin-view" data-panel="team" hidden>
+          <h1>Equipe</h1>
+          <p>Adicione, altere, desative ou exclua integrantes. A prévia mostra o cartão como será exibido em Quem Somos.</p>
+          <div class="admin-split">
+            <form id="team-form" class="admin-form">
+              <input name="id" type="hidden">
+              <label>Nome<input name="name" required></label>
+              <label>Cargo<input name="role" required></label>
+              <label>E-mail<input name="email" type="email"></label>
+              <label>Fotografia<div class="upload-row"><input name="photo_url" type="text"><input type="file" accept="image/jpeg,image/png,image/webp,image/gif"></div></label>
+              <img class="admin-preview" data-preview="photo_url" alt="Prévia da fotografia" hidden>
+              <label>Ordem<input name="sort_order" type="number" value="0"></label>
+              <label class="admin-checkbox"><input name="active" type="checkbox" checked> Integrante ativo</label>
+              <div class="admin-actions"><button class="btn" type="submit">Salvar integrante</button><button class="btn btn-outline" type="button" id="team-new">Novo integrante</button></div>
+              <p class="admin-message" role="status"></p>
+            </form>
+            <div class="admin-records"><h2>Integrantes cadastrados</h2><div id="team-items" class="admin-items"></div></div>
+            <aside class="admin-preview-panel" aria-label="Prévia do integrante">
+              <h2>Prévia — Quem Somos › Equipe</h2>
+              <article class="preview-team">
+                <img data-live-preview="team.photo_url" alt="Prévia da fotografia do integrante">
+                <p data-live-preview="team.role">Cargo</p>
+                <strong data-live-preview="team.name">Nome do integrante</strong>
+                <a data-live-preview="team.email" hidden>EMAIL</a>
+              </article>
+              <p class="admin-preview-note">Prévia local; salve para publicar as alterações.</p>
+            </aside>
+          </div>
+        </section>
+        <section class="admin-view" data-panel="projects" hidden>
+          <h1>Projetos</h1>
+          <p>Adicione, altere, desative ou exclua projetos. Cada projeto ativo aparece como uma nova aba dentro da seção Projetos da página inicial.</p>
+          <div class="admin-split">
+            <form id="project-form" class="admin-form">
+              <input name="id" type="hidden">
+              <label>Nome do projeto<input name="title" required></label>
+              <label>Subtítulo (opcional, exibido abaixo do título)
+                <textarea name="subtitle" rows="2" placeholder="Resumo curto do projeto"></textarea>
+              </label>
+              <div class="project-editor-field">
+                <label id="project-body-label" for="project-body">Texto principal do projeto</label>
+                <p class="admin-field-help">Este texto aparece em largura total. Selecione trechos para aplicar cor, negrito, itálico ou ajustar o tamanho com A+ e A-. Use Enter para iniciar um parágrafo e Shift+Enter para quebrar a linha sem espaço extra.</p>
+                <div class="editor-toolbar project-editor-toolbar" aria-label="Formatação do texto do projeto">
+                  <button type="button" data-project-format="bold" aria-label="Negrito"><strong>B</strong></button>
+                  <button type="button" data-project-format="italic" aria-label="Itálico"><em>I</em></button>
+                  <div class="project-format-control">
+                    <span>Cor do texto</span>
+                    <div class="project-color-palette" role="group" aria-label="Cores predefinidas">
+                      <button type="button" data-project-color="#19486a" aria-label="Azul Canopus" title="Azul Canopus"><span class="project-color-swatch" style="--project-color: #19486a"></span>Azul</button>
+                      <button type="button" data-project-color="#1565c0" aria-label="Azul" title="Azul"><span class="project-color-swatch" style="--project-color: #1565c0"></span>Azul-claro</button>
+                      <button type="button" data-project-color="#111111" aria-label="Preto" title="Preto"><span class="project-color-swatch" style="--project-color: #111111"></span>Preto</button>
+                      <button type="button" data-project-color="#b51f1f" aria-label="Vermelho" title="Vermelho"><span class="project-color-swatch" style="--project-color: #b51f1f"></span>Vermelho</button>
+                      <button type="button" data-project-color="#256d3a" aria-label="Verde" title="Verde"><span class="project-color-swatch" style="--project-color: #256d3a"></span>Verde</button>
+                      <button type="button" data-project-color="#c04b00" aria-label="Laranja" title="Laranja"><span class="project-color-swatch" style="--project-color: #c04b00"></span>Laranja</button>
+                      <button type="button" data-project-color="#673ab7" aria-label="Roxo" title="Roxo"><span class="project-color-swatch" style="--project-color: #673ab7"></span>Roxo</button>
+                      <button type="button" data-project-color="#555555" aria-label="Cinza" title="Cinza"><span class="project-color-swatch" style="--project-color: #555555"></span>Cinza</button>
+                    </div>
+                  </div>
+                  <div class="project-format-control">
+                    <span>Ajustar tamanho do texto</span>
+                    <div class="project-size-controls" role="group" aria-label="Ajustar tamanho do texto">
+                      <button type="button" data-project-size-step="-1" aria-label="Diminuir tamanho do texto">A-</button>
+                      <button type="button" data-project-size-step="1" aria-label="Aumentar tamanho do texto">A+</button>
+                    </div>
+                  </div>
+                </div>
+                <div id="project-body" class="rich-editor" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="project-body-label"></div>
+              </div>
+              <label>Informações complementares (opcional, aparecem ao lado da foto)
+                <textarea name="details" rows="6" placeholder="Área de atuação: ...&#10;Público-alvo: ...&#10;Números: ..."></textarea>
+              </label>
+              <p class="admin-field-help">Digite uma informação por linha. Este bloco usa o estilo azul dos painéis já publicados.</p>
+              <label>Logo do projeto (PNG)<div class="upload-row"><input name="logo_url" type="text" placeholder="URL da logo"><input type="file" accept="image/png"></div></label>
+              <img class="admin-preview" data-preview="logo_url" alt="Prévia da logo do projeto" hidden>
+              <label>Imagem de destaque circular<div class="upload-row"><input name="image_url" type="text" placeholder="URL da imagem"><input type="file" accept="image/jpeg,image/png,image/webp,image/gif"></div></label>
+              <img class="admin-preview" data-preview="image_url" alt="Prévia da imagem circular" hidden>
+              <label>Posição da imagem circular
+                <select name="image_position">
+                  <option value="right">Só a direita</option>
+                  <option value="left">Só a esquerda</option>
+                  <option value="bottom-left">Inferior esquerda</option>
+                  <option value="bottom-right">Inferior direita</option>
+                </select>
+              </label>
+              <fieldset class="admin-ods-select">
+                <legend>ODS relacionadas ao projeto</legend>
+                <div class="admin-ods-options">
+                  <label><input type="checkbox" name="ods" value="1"> 1 — Erradicação da pobreza</label>
+                  <label><input type="checkbox" name="ods" value="2"> 2 — Fome zero</label>
+                  <label><input type="checkbox" name="ods" value="3"> 3 — Saúde e bem-estar</label>
+                  <label><input type="checkbox" name="ods" value="4"> 4 — Educação de qualidade</label>
+                  <label><input type="checkbox" name="ods" value="5"> 5 — Igualdade de gênero</label>
+                  <label><input type="checkbox" name="ods" value="6"> 6 — Água potável</label>
+                  <label><input type="checkbox" name="ods" value="7"> 7 — Energia limpa</label>
+                  <label><input type="checkbox" name="ods" value="8"> 8 — Trabalho decente</label>
+                  <label><input type="checkbox" name="ods" value="9"> 9 — Inovação e infraestrutura</label>
+                  <label><input type="checkbox" name="ods" value="10"> 10 — Redução das desigualdades</label>
+                  <label><input type="checkbox" name="ods" value="11"> 11 — Cidades sustentáveis</label>
+                  <label><input type="checkbox" name="ods" value="12"> 12 — Consumo responsável</label>
+                  <label><input type="checkbox" name="ods" value="13"> 13 — Ação climática</label>
+                  <label><input type="checkbox" name="ods" value="14"> 14 — Vida na água</label>
+                  <label><input type="checkbox" name="ods" value="15"> 15 — Vida terrestre</label>
+                  <label><input type="checkbox" name="ods" value="16"> 16 — Paz e justiça</label>
+                  <label><input type="checkbox" name="ods" value="17"> 17 — Parcerias</label>
+                </div>
+              </fieldset>
+              <label class="admin-checkbox"><input id="use-custom-ods-color" name="use_custom_ods_color" type="checkbox"> Usar uma cor personalizada na aba do projeto</label>
+              <label>Cor da aba
+                <select name="ods_color" disabled>
+                  <option value="#19486a">Azul Canopus</option>
+                  <option value="#1565c0">Azul</option>
+                  <option value="#111111">Preto</option>
+                  <option value="#b51f1f">Vermelho</option>
+                  <option value="#256d3a">Verde</option>
+                  <option value="#c04b00">Laranja</option>
+                  <option value="#673ab7">Roxo</option>
+                  <option value="#555555">Cinza</option>
+                </select>
+              </label>
+              <label>Ordem<input name="sort_order" type="number" value="0"></label>
+              <label class="admin-checkbox"><input name="active" type="checkbox" checked> Projeto ativo</label>
+              <div class="admin-actions"><button class="btn" type="submit">Salvar projeto</button><button class="btn btn-outline" type="button" id="project-new">Novo projeto</button></div>
+              <p class="admin-message" role="status"></p>
+            </form>
+            <div class="admin-records"><h2>Projetos cadastrados</h2><div id="project-items" class="admin-items"></div></div>
+            <aside class="admin-preview-panel" aria-label="Prévia do projeto">
+              <h2>Prévia — Início › Projetos</h2>
+              <article class="preview-project tabpanel">
+                <div class="preview-project-head tabpanel-head">
+                  <h3 data-live-preview="project.title">Nome do projeto</h3>
+                  <img class="preview-project-logo project-logo" data-live-preview="project.logo_url" alt="Prévia da logo do projeto" hidden>
+                </div>
+                <p class="lead project-subtitle" data-live-preview="project.subtitle" hidden></p>
+                <div class="preview-project-layout tabpanel-cols project-image-position--none" data-project-preview-layout>
+                  <div class="preview-project-body project-rich-content" data-live-preview="project.description">Conteúdo do projeto.</div>
+                  <p class="preview-project-details project-info info destaque" data-live-preview="project.details" hidden></p>
+                  <img class="preview-project-circle circle-img" data-live-preview="project.image_url" alt="Prévia da imagem circular" hidden>
+                </div>
+                <ul class="ods" data-live-preview="project.ods" hidden></ul>
+              </article>
+              <p class="admin-preview-note">Prévia local; salve para publicar as alterações.</p>
+            </aside>
+          </div>
+        </section>
+        <section class="admin-view" data-panel="events" hidden>
+          <h1>Eventos por cidade</h1>
+          <p>Cadastre cada encontro com cidade e datas. Desative as inscrições para fechar um evento; o histórico de participantes será preservado.</p>
+          <div class="admin-split admin-event-layout">
+            <form id="event-form" class="admin-form">
+              <input name="id" type="hidden">
+              <label>Nome do encontro<input name="event_name" value="Encontro Estilo de Vida Canopus" maxlength="160" required></label>
+              <label>Cidade<input name="city" maxlength="100" required></label>
+              <label>Estado<input name="state" maxlength="80" required></label>
+              <label>Data de início<input name="starts_on" type="date" required></label>
+              <label>Data de término<input name="ends_on" type="date" required></label>
+              <label>Local do retiro / ponto de referência<input name="venue" maxlength="240"></label>
+              <label class="admin-checkbox"><input name="active" type="checkbox" checked> Receber inscrições</label>
+              <div class="admin-actions">
+                <button class="btn" type="submit">Salvar evento</button>
+                <button class="btn btn-outline" type="button" id="event-new">Novo evento</button>
+              </div>
+              <p class="admin-message" role="status" aria-live="polite"></p>
+            </form>
+            <div class="admin-records">
+              <h2>Eventos cadastrados</h2>
+              <p id="event-admin-status" class="admin-message" role="status" aria-live="polite"></p>
+              <div id="event-items" class="admin-items"></div>
+            </div>
+          </div>
+        </section>
+        <section class="admin-view" data-panel="registrations" hidden>
+          <h1>Inscrições</h1>
+          <p>Consulte os participantes agrupados por encontro, atualize a situação e exporte uma ficha individual ou uma planilha Excel com os selecionados.</p>
+          <p class="admin-field-help">Os dados de contato, endereço e saúde são privados e estão disponíveis somente para administradores autenticados.</p>
+          <div class="registration-admin-toolbar">
+            <label>Filtrar por cidade / evento
+              <select id="registration-event-filter">
+                <option value="">Todos os eventos</option>
+              </select>
+            </label>
+            <label class="admin-checkbox registration-select-all">
+              <input id="registration-select-all" type="checkbox">
+              Selecionar todos os exibidos
+            </label>
+            <button type="button" class="btn" id="registrations-export" disabled>Exportar selecionados (.xls)</button>
+          </div>
+          <p id="registration-admin-status" class="admin-message" role="status" aria-live="polite"></p>
+          <div id="registration-items" class="registration-groups"></div>
+        </section>
+        <section class="admin-view" data-panel="gallery" hidden>
+          <h1>Galeria de imagens</h1>
+          <p>Envie imagens para a biblioteca do site. Copie a URL para usá-la nos formulários ou exclua um arquivo que não esteja mais em uso.</p>
+          <form id="gallery-form" class="admin-form">
+            <label>Imagem<input name="image" type="file" accept="image/jpeg,image/png,image/webp,image/gif" required></label>
+            <label>Pasta<select name="folder"><option value="galeria">Galeria</option><option value="banners">Banners</option><option value="noticias">Notícias</option><option value="equipe">Equipe</option><option value="projetos">Projetos</option></select></label>
+            <button class="btn" type="submit">Enviar imagem</button>
+            <p class="admin-message" role="status"></p>
+          </form>
+          <p class="admin-message" id="gallery-message" role="status" aria-live="polite"></p>
+          <div id="gallery-items" class="admin-gallery"></div>
+        </section>
+      </div>
+    </div>
+  </main>
+  <script type="module" src="../js/admin.js"></script>
+</body>
+</html>

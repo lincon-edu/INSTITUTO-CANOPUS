@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Inscreva-se em um encontro do Instituto Canopus em sua cidade.">
+  <title>Inscreva-se | Instituto Canopus</title>
+  <link rel="icon" href="assets/img/logos/simbolo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Poppins:wght@200;300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Ir para o conteúdo principal</a>
+
+<header class="site-header has-lines">
+  <div class="container">
+    <a class="logo" href="index.html" aria-label="Instituto Canopus — página inicial">
+      <img src="assets/img/logos/instituto-canopus.png" alt="Instituto Canopus" width="160" height="58">
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <div class="header-right">
+      <nav class="main-nav" aria-label="Menu principal">
+        <ul><li><a href="quem-somos.html">Quem Somos</a></li><li><a href="index.html#projetos">Projetos</a></li><li><a href="noticias.html">Notícias</a></li><li><a href="index.html#contato">Contato</a></li></ul>
+      </nav>
+      <ul class="social">
+        <li><a href="https://www.instagram.com/institutocanopus/" target="_blank" rel="noopener" aria-label="Instagram"><img src="assets/img/icones/instagram.png" alt="Instagram" width="18" height="18"></a></li>
+        <li><a href="https://www.facebook.com/InstitutoCanopus" target="_blank" rel="noopener" aria-label="Facebook"><img src="assets/img/icones/facebook.png" alt="Facebook" width="18" height="18"></a></li>
+        <li><a href="https://www.youtube.com/@InstitutoCanopus" target="_blank" rel="noopener" aria-label="YouTube"><img src="assets/img/icones/youtube.png" alt="YouTube" width="18" height="18"></a></li>
+        <li><a href="https://www.linkedin.com/company/instituto-canopus/" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/img/icones/linkedin.png" alt="LinkedIn" width="18" height="18"></a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo" class="signup-page">
+  <section class="signup-hero" aria-label="Inscrições para os encontros">
+    <div class="signup-hero-content">
+      <p>Instituto Canopus</p>
+      <h1>Um encontro para viver novas experiências</h1>
+      <span>Dois dias de conexão, reflexão e desenvolvimento humano.</span>
+    </div>
+  </section>
+  <section class="signup-content">
+    <div class="signup-intro">
+      <h2>Inscreva-se</h2>
+      <p>Escolha a cidade e preencha seus dados. As informações de saúde e alimentação ajudam a equipe a se preparar para receber você com segurança.</p>
+      <p id="event-loading" class="signup-status" role="status" aria-live="polite">Carregando os próximos encontros...</p>
+    </div>
+    <form id="event-registration-form" class="signup-form">
+      <fieldset class="registration-fieldset">
+        <legend>Encontro e dados pessoais</legend>
+        <label class="signup-field signup-field-wide">Cidade do encontro
+          <select name="event_id" id="signup-event" required>
+            <option value="">Selecione um encontro</option>
+          </select>
+        </label>
+        <label class="signup-field signup-field-wide">Nome completo
+          <input name="full_name" autocomplete="name" maxlength="160" required>
+        </label>
+        <label class="signup-field">E-mail
+          <input name="email" type="email" autocomplete="email" maxlength="254" required>
+        </label>
+        <label class="signup-field">Telefone / WhatsApp
+          <input name="phone" type="tel" autocomplete="tel" maxlength="40" required>
+        </label>
+        <label class="signup-field signup-field-wide">Data de nascimento (opcional)
+          <input name="birth_date" type="date" autocomplete="bday">
+        </label>
+      </fieldset>
+
+      <fieldset class="registration-fieldset">
+        <legend>Endereço e deslocamento</legend>
+        <label class="signup-field signup-field-wide">Rua / avenida
+          <input name="address_street" autocomplete="address-line1">
+        </label>
+        <label class="signup-field">Número
+          <input name="address_number" autocomplete="off">
+        </label>
+        <label class="signup-field">Complemento
+          <input name="address_complement" autocomplete="address-line2">
+        </label>
+        <label class="signup-field">Bairro
+          <input name="address_neighborhood" autocomplete="address-level3">
+        </label>
+        <label class="signup-field">CEP
+          <input name="postal_code" autocomplete="postal-code">
+        </label>
+        <label class="signup-field">Cidade onde mora
+          <input name="address_city" autocomplete="address-level2">
+        </label>
+        <label class="signup-field">Estado
+          <input name="address_state" autocomplete="address-level1" maxlength="80">
+        </label>
+        <label class="signup-field signup-field-wide">Cidade de partida (se diferente)
+          <input name="departure_city">
+        </label>
+        <label class="signup-field signup-field-wide signup-checkbox">
+          <input name="transport_needed" type="checkbox" value="Sim">
+          Preciso conversar com a equipe sobre transporte até o local do retiro
+        </label>
+      </fieldset>
+
+      <fieldset class="registration-fieldset">
+        <legend>Contato para emergências</legend>
+        <label class="signup-field">Nome do contato
+          <input name="emergency_name" required>
+        </label>
+        <label class="signup-field">Parentesco / relação
+          <input name="emergency_relationship" required>
+        </label>
+        <label class="signup-field">Telefone do contato
+          <input name="emergency_phone" type="tel" required>
+        </label>
+        <label class="signup-field">Telefone alternativo (opcional)
+          <input name="emergency_phone_backup" type="tel">
+        </label>
+      </fieldset>
+
+      <fieldset class="registration-fieldset">
+        <legend>Alimentação, alergias e necessidades</legend>
+        <label class="signup-field signup-field-wide">Restrições alimentares
+          <select name="dietary_restrictions">
+            <option value="Nenhuma">Nenhuma</option>
+            <option value="Vegetariana">Vegetariana</option>
+            <option value="Vegana">Vegana</option>
+            <option value="Sem glúten">Sem glúten</option>
+            <option value="Sem lactose">Sem lactose</option>
+            <option value="Outra">Outra</option>
+          </select>
+        </label>
+        <label class="signup-field signup-field-wide">Detalhes ou outras restrições
+          <textarea name="dietary_details" rows="3"></textarea>
+        </label>
+        <label class="signup-field signup-field-wide">Alergias alimentares
+          <textarea name="food_allergies" rows="3" placeholder="Se não houver, escreva “Nenhuma”."></textarea>
+        </label>
+        <label class="signup-field signup-field-wide">Outras alergias ou informações de saúde importantes para sua segurança (opcional)
+          <textarea name="health_notes" rows="3"></textarea>
+        </label>
+        <label class="signup-field signup-field-wide">Medicamentos de uso contínuo (opcional)
+          <textarea name="medications" rows="2"></textarea>
+        </label>
+        <label class="signup-field signup-field-wide">Necessidades de acessibilidade ou acomodação (opcional)
+          <textarea name="accessibility_needs" rows="2"></textarea>
+        </label>
+      </fieldset>
+
+      <label class="signup-field signup-field-wide">Observações para a organização (opcional)
+        <textarea name="additional_notes" rows="3"></textarea>
+      </label>
+      <label class="signup-field signup-field-wide signup-checkbox signup-consent">
+        <input name="privacy_consent" type="checkbox" required>
+        Concordo que meus dados sejam usados pelo Instituto Canopus para organizar este encontro e entrar em contato comigo sobre a inscrição.
+      </label>
+      <p id="registration-status" class="signup-status" role="status" aria-live="polite"></p>
+      <button class="btn signup-submit" type="submit" disabled>Enviar inscrição</button>
+    </form>
+  </section>
+</main>
+
+<footer class="site-footer has-lines">
+  <div class="footer-grid">
+    <div class="footer-logo"><a href="index.html"><img src="assets/img/logos/instituto-canopus.png" alt="Instituto Canopus"></a></div>
+    <div class="footer-nav">
+      <ul><li><a href="quem-somos.html">Quem Somos</a></li><li><a href="index.html#projetos">Projetos</a></li><li><a href="noticias.html">Notícias</a></li><li><a href="index.html#contato">Contato</a></li></ul>
+      <ul class="social">
+        <li><a href="https://www.instagram.com/institutocanopus/" target="_blank" rel="noopener" aria-label="Instagram"><img src="assets/img/icones/instagram.png" alt="Instagram" width="18" height="18"></a></li>
+        <li><a href="https://www.facebook.com/InstitutoCanopus" target="_blank" rel="noopener" aria-label="Facebook"><img src="assets/img/icones/facebook.png" alt="Facebook" width="18" height="18"></a></li>
+        <li><a href="https://www.youtube.com/@InstitutoCanopus" target="_blank" rel="noopener" aria-label="YouTube"><img src="assets/img/icones/youtube.png" alt="YouTube" width="18" height="18"></a></li>
+        <li><a href="https://www.linkedin.com/company/instituto-canopus/" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/img/icones/linkedin.png" alt="LinkedIn" width="18" height="18"></a></li>
+      </ul>
+    </div>
+    <div class="footer-projects">
+      <h4>Nossos projetos</h4>
+      <ul><li><a href="index.html#projeto-estilo-de-vida">Estilo de Vida Canopus</a></li><li><a href="index.html#projeto-constelation">Constelation</a></li><li><a href="index.html#projeto-primeiro-passo">Primeiro Passo</a></li><li><a href="index.html#projeto-colcha-de-retalhos">Colcha de Retalhos</a></li><li><a href="index.html#projeto-superacao">Superação</a></li><li><a href="index.html#projeto-crianca-feliz">Criança Feliz Canopus</a></li><li><a href="index.html#projeto-saciar">Projeto Saciar</a></li></ul>
+    </div>
+    <div class="footer-group">
+      <a href="https://grupocanopus.com.br/" target="_blank" rel="noopener"><img src="assets/img/logos/grupo-canopus.png" alt="Grupo Canopus"></a>
+      <div class="footer-links"><a href="https://grupocanopus.com.br/" target="_blank" rel="noopener">Portal Grupo Canopus</a><a href="https://www.consorciocanopus.com.br/" target="_blank" rel="noopener">Portal Consórcio Canopus</a></div>
+    </div>
+  </div>
+  <div class="footer-bar"></div>
+</footer>
+<script type="module" src="js/main.js"></script>
+<script type="module" src="js/event-signup.js"></script>
+</body>
+</html>
